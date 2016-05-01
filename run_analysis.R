@@ -3,7 +3,7 @@
 library(plyr)
 library(data.table)
 
-#set working directory to the location where the UCI HAR Dataset was unzipped
+#Set working directory.
 setwd('C:/Users/rraghave/Documents/Coursera-DataScience/Getting-Cleaning-Data/CourseProject/UCI HAR Dataset');
 
 #Merges the training and the test sets to create one data set.
@@ -49,8 +49,7 @@ names(Merged_Data) <- gsub("Gyro", "Gyroscope", names(Merged_Data))
 names(Merged_Data) <- gsub("^t", "time", names(Merged_Data))
 names(Merged_Data) <- gsub("^f", "frequency", names(Merged_Data))
 
-#create a second, independent tidy data set with the average of each variable for each activity and each subject.
+#Create a second, independent tidy data set with the average of each variable for each activity and each subject.
 Merged_Data.dt <- data.table(Merged_Data)
 Data <- Merged_Data.dt[, lapply(.SD, mean), by = 'subject,activity']
 write.table(Data, file = "tidy_data.txt",row.names = FALSE)
-
