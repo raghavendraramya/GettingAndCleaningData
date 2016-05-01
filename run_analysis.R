@@ -52,4 +52,4 @@ names(Merged_Data) <- gsub("^f", "frequency", names(Merged_Data))
 #Create a second, independent tidy data set with the average of each variable for each activity and each subject.
 Merged_Data.dt <- data.table(Merged_Data)
 Data <- Merged_Data.dt[, lapply(.SD, mean), by = 'subject,activity']
-write.table(Data, file = "tidy_data.txt",row.names = FALSE)
+write.table(Data, file = "tidy_data_set.txt",row.names = FALSE)
